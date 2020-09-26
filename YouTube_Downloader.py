@@ -91,7 +91,7 @@ def body():
         #try:
         subHandler.merge(outp2)
         #except:
-        #    print("Error occured! Closing..")
+        #    print("Error occurred! Closing..")
         #else:
         #    subHandler.del_file(subname)
         #    print("Temp subtitle file deleted, merge successful!")
