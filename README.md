@@ -45,3 +45,4 @@ pip show pytube
 8. Run this script and enjoy downloading/archiving high quality YouTube videos and subtitles. :)
 
 NOTE: Merging subtitles with downloaded video is not working properly. I will update Subtitler.py file.
+NOTE-2: The default download folder for videos and subtitles is defined as "C://YT_Downloads/".
