@@ -1,5 +1,5 @@
 import ffmpeg #to combine DASH audio and video files
-import os 
+import os #to delete DASH temp files
 
 class merging:
 
@@ -11,9 +11,9 @@ class merging:
     def get_inputs(self, vid, aud): #ffmpeg inputs
         global vid_s #keep the value globally
         global aud_s
+        
         vid_s = ffmpeg.input("C://YT_Downloads/"+self.vid)
         aud_s = ffmpeg.input("C://YT_Downloads/"+self.aud)
-        print("inputs successful!")
 
     def merge(self, outp): #ffmpeg merge function
         ffmpeg.concat(vid_s, aud_s, v=1, a=1).output("C://YT_Downloads/"+self.outp).run()
