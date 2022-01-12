@@ -1,8 +1,8 @@
 #imports
-import Downloader
-import Merger
-import Subtitler
-import ReadMeFile
+from Requirements.GetRequirements import * # start from here
+import Classes.Downloader as Downloader
+import Classes.Merger as Merger
+import Subtitler #under construction
 
 def exit(): #exit function
     cntrl = 0
@@ -47,6 +47,7 @@ def body():
     downSelect = input("Want to download? Y/N\n").upper()
     if downSelect == 'Y':
         fn = input("Filename: ") #define custom filename
+        fn = fn + ".mp4"
         if streamTmp.is_progressive:
             Downloader.GetProgressive.GP_Download(fn)
             print("Download successful!")
@@ -80,37 +81,23 @@ def body():
             else:
                 mrg.del_file(vidx,audx)
             
-        subSelect = input("Want to download and merge subtitles if available? y/n\n").upper()
+        subSelect = input("Want to download and merge subtitles if available? y/n\n\nSubtitle feature is still under construction! Sorry for the inconvenience.\nEnjoy! :)").upper()
         
-        outp = "{fn}.mp4".format(fn=fn)
-        outp2 = "{fn}_subtitled.mp4".format(fn=fn)
-        Subtitler.GetSubtitle(subSelect, subStreamer, "")
-        subname = subStreamer.title+" ("+Subtitler.GetSubtitle.getSubLang("")+").srt"
-        subHandler = Subtitler.MergeSubtitle(outp, subname, outp2)
-        subHandler.get_inputs(outp, subname)
-        #try:
-        subHandler.merge(outp2)
-        #except:
-        #    print("Error occurred! Closing..")
-        #else:
-        #    subHandler.del_file(subname)
-        #    print("Temp subtitle file deleted, merge successful!")
+        #outp = "{fn}.mp4".format(fn=fn)
+        #outp2 = "{fn}_subtitled.mp4".format(fn=fn)
+        #Subtitler.GetSubtitle(subSelect, subStreamer, "")
+        #subname = subStreamer.title+" ("+Subtitler.GetSubtitle.getSubLang("")+").srt"
+        #subHandler = Subtitler.MergeSubtitle(outp, subname, outp2)
+        #subHandler.get_inputs(outp, subname)
+        ##try:
+        #subHandler.merge(outp2)
+        ##except:
+        ##    print("Error occured! Closing..")
+        ##else:
+        ##    subHandler.del_file(subname)
+        ##    print("Temp subtitle file deleted, merge successful!")
 
     elif downSelect == 'N':
         print("Sad story")
         exit()
-        
-#initiate/warning
-flag = 0
-while flag == 0:
-    print("Welcome!\nThis script helps you download YouTube videos for free.\nBefore continue, please read the README file. It is important to make this downloader work properly.")
-    cont = int(input("Press:\n1. If you already read the README file and completed the steps,\n2. To follow the instructions on README file\n"))
-    if cont == 1: #end while loop, continue body() function
-        body()
-        flag = exit()
-    elif cont == 2:
-        print("See you soon!")
-        flag = ReadMeFile.RMF.readme(flag)
-    else:
-        print("Undefined input! Please enter 1 or 2.")
-        flag = 0
+body()
